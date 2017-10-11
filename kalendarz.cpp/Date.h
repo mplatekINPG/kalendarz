@@ -1,10 +1,3 @@
-/*
- * Date.h
- *
- *  Created on: 11 paź 2017
- *      Author: siniewic
- */
-
 #ifndef DATE_H_
 #define DATE_H_
 #include <iostream>
