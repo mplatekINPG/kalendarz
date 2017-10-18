@@ -78,7 +78,7 @@ int Date::operator-(const Date& data1) const
 	return abs(daysA - daysB);
 }
 
-std::ostream & operator<<(std::ostream & out, const Date data1)
+std::ostream & operator<<(std::ostream & out, const Date& data1)
 {
 	out<<data1.getYear()<<".";
 	data1.getMonth() > 9 ? out<<data1.getMonth()<<"." : out<<"0"<<data1.getMonth()<<".";

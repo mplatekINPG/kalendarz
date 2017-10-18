@@ -13,8 +13,10 @@ using namespace std;
 int main()
 {
 	Date data1(2000, 9, 14);
-	//cout << data1 << endl;
-	//cout << data1+30 << endl;
+	
+	cout << data1 << endl;
+	cout << data1+30 << endl;
+	cout << data1-60 <<endl;
 
 	return 0;
 }
