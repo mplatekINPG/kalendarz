@@ -30,10 +30,10 @@ Date Date::operator+(int nDays) const
 	newDay += nDays;
 	while(newDay > monthDays[newMonth - 1] || newMonth > 12)
 	{
-		if (newDay > monthDays[month - 1])
+		if (newDay > monthDays[newMonth - 1])
 		{
 			newMonth++;
-			newDay -= monthDays[month - 1];
+			newDay -= monthDays[newMonth - 2];
 		}
 		if (newMonth > 12)
 		{
@@ -48,17 +48,17 @@ Date Date::operator-(int nDays) const
 {
 	int newYear = year, newMonth = month, newDay = day;
 	newDay -= nDays;
-	while(newDay < 0 || newMonth < 12)
+	while(newDay < 1 || newMonth < 1)
 	{
-		if (newDay > monthDays[month - 1])
+		if (newDay < 1)
 		{
-			newMonth++;
-			newDay -= monthDays[month - 1];
+			newMonth--;
+			newDay += monthDays[newMonth - 1];
 		}
-		if (newMonth > 12)
+		if (newMonth < 1)
 		{
-			newYear++;
-			newMonth -= 12;
+			newYear--;
+			newMonth += 12;
 		}
 	}
 	return Date(newYear, newMonth, newDay);
@@ -69,11 +69,11 @@ int Date::operator-(const Date& data1) const
 	int daysA = 0, daysB = 0;
 	daysA += day + year * 365;
 	for (int i = 0; i<month; i++)
-		daysA += month*monthDays[i];
+		daysA += monthDays[i];
 		
 	daysB += data1.getDay() + data1.getYear() * 365;
 	for (int i = 0; i<data1.getMonth(); i++)
-		daysA += data1.getMonth()*monthDays[i];
+		daysB += monthDays[i];
 		
 	return abs(daysA - daysB);
 }
