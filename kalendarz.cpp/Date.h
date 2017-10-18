@@ -8,7 +8,7 @@ class Date
 		int year;
 		int month;
 		int day;
-		static const int monthDays[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+		const int monthDays[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
 	public:
 		Date(int newYear = 1970, int newMonth = 1, int newDay = 1);
@@ -28,6 +28,10 @@ class Date
 
 		friend Date operator+(int nDays, const Date& data1);
 		friend std::ostream& operator<<(std::ostream& out, const Date& data1);
+
+		int getYear() const {return year;};
+		int getMonth() const {return month;};
+		int getDay() const {return day;};
 };
 
 #endif /* DATE_H_ */
