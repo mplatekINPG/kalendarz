@@ -78,10 +78,69 @@ int Date::operator-(const Date& data1) const
 	return abs(daysA - daysB);
 }
 
+Date & Date::operator+=(int nDays)
+{
+	day += nDays;
+	while(newDay > monthDays[newMonth - 1] || newMonth > 12)
+	{
+		if (newDay > monthDays[newMonth - 1])
+		{
+			newMonth++;
+			newDay -= monthDays[newMonth - 2];
+		}
+		if (newMonth > 12)
+		{
+			newYear++;
+			newMonth -= 12;
+		}
+	}
+	return *this;
+}
+
+Date & Date::operator-=(int nDays)
+{
+	day -= nDays;
+	while(newDay < 1 || newMonth < 1)
+	{
+		if (newDay < 1)
+		{
+			newMonth--;
+			newDay += monthDays[newMonth - 1];
+		}
+		if (newMonth < 1)
+		{
+			newYear--;
+			newMonth += 12;
+		}
+	}
+	return *this;
+}
+
+bool Date::operator==(const Date & data1)
+{
+	if ( day != data1.day || month != data1.month || year != data1.year )
+		return false;
+	return true;
+}
+
+bool Date::operator!=(const Date & data1)
+{
+	if ( day == data1.day && month == data1.month && year == data1.year )
+		return false;
+	return true;
+}
+
+
+
 std::ostream & operator<<(std::ostream & out, const Date& data1)
 {
-	out<<data1.getYear()<<".";
-	data1.getMonth() > 9 ? out<<data1.getMonth()<<"." : out<<"0"<<data1.getMonth()<<".";
+	if ( data1.getYear() < 1970 && data1.getMonth() < 1 && data1.getDay() < 1 )
+	{
+		out<<"data sprzed poczatku epoki";
+		return out;
+	}
+	out<<data1.getYear()<<"-";
+	data1.getMonth() > 9 ? out<<data1.getMonth()<<"-" : out<<"0"<<data1.getMonth()<<"-";
 	data1.getDay() > 9 ? out<<data1.getDay() : out<<"0"<<data1.getDay();
 	return out;
 }
