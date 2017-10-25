@@ -130,7 +130,7 @@ bool Date::operator!=(const Date & data1) const
 	return true;
 }
 
-Date operator
+
 
 std::ostream & operator<<(std::ostream & out, const Date& data1)
 {
