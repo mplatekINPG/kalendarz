@@ -25,6 +25,8 @@ int main()
 	data4 -= 44;
 	cout << "-= " << data4 << endl;
 	cout << data2 - data1 << endl;
+	data4 = data4 - 100000;
+	cout << data4 <<endl;
 
 	return 0;
 }
