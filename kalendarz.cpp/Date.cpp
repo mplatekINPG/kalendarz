@@ -1,6 +1,9 @@
 #include "Date.h"
 #include <iostream>
 #include <cmath>
+#include <iomanip>
+
+using namespace std;
 
 Date::Date(int newYear, int newMonth, int newDay)
 {
@@ -130,8 +133,6 @@ bool Date::operator!=(const Date & data1) const
 	return true;
 }
 
-Date operator
-
 std::ostream & operator<<(std::ostream & out, const Date& data1)
 {
 /*	if ( data1.getYear() < 1970 )
@@ -140,9 +141,11 @@ std::ostream & operator<<(std::ostream & out, const Date& data1)
 		return out;
 	}
 */
-	out<<data1.getYear()<<"-";
-	data1.getMonth() > 9 ? out<<data1.getMonth()<<"-" : out<<"0"<<data1.getMonth()<<"-";
-	data1.getDay() > 9 ? out<<data1.getDay() : out<<"0"<<data1.getDay();
+	out << data1.getYear() << "-";
+	out << setfill('0') << setw(2);
+	out << data1.getMonth() << '-';
+	out << setfill('0') << setw(2);
+	out << data1.getDay();
 
 	if ( data1.getYear() < 1970 )
 		out << " - ta data jest sprzed poczatku epoki !!";
