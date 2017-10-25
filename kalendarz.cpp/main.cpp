@@ -17,7 +17,13 @@ int main()
 	
 	cout << data1 << ", " << data2 << endl;
 	cout << data1+366 << endl;
+	Date data3(data1);
+	data3 += 366;
+	cout << "+= " << data3 << endl; 
 	cout << data1-44 <<endl;
+	Date data4(data1);
+	data4 -= 44;
+	cout << "-= " << data4 << endl;
 	cout << data2 - data1 << endl;
 
 	return 0;

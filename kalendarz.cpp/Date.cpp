@@ -81,17 +81,17 @@ int Date::operator-(const Date& data1) const
 Date & Date::operator+=(int nDays)
 {
 	day += nDays;
-	while(newDay > monthDays[newMonth - 1] || newMonth > 12)
+	while(this->getDay() > monthDays[this->getMonth() - 1] || this->getMonth() > 12)
 	{
-		if (newDay > monthDays[newMonth - 1])
+		if (this->getDay() > monthDays[this->getMonth() - 1])
 		{
-			newMonth++;
-			newDay -= monthDays[newMonth - 2];
+			this->month++;
+			this->day -= monthDays[this->getMonth() - 2];
 		}
-		if (newMonth > 12)
+		if (this->getMonth() > 12)
 		{
-			newYear++;
-			newMonth -= 12;
+			this->year++;
+			this->month -= 12;
 		}
 	}
 	return *this;
@@ -100,30 +100,30 @@ Date & Date::operator+=(int nDays)
 Date & Date::operator-=(int nDays)
 {
 	day -= nDays;
-	while(newDay < 1 || newMonth < 1)
+	while(this->getDay() < 1 || this->getMonth() < 1)
 	{
-		if (newDay < 1)
+		if (this->getDay() < 1)
 		{
-			newMonth--;
-			newDay += monthDays[newMonth - 1];
+			this->month--;
+			this->day += monthDays[this->getMonth() - 1];
 		}
-		if (newMonth < 1)
+		if (this->getMonth() < 1)
 		{
-			newYear--;
-			newMonth += 12;
+			this->year--;
+			this->month += 12;
 		}
 	}
 	return *this;
 }
 
-bool Date::operator==(const Date & data1)
+bool Date::operator==(const Date & data1) const
 {
 	if ( day != data1.day || month != data1.month || year != data1.year )
 		return false;
 	return true;
 }
 
-bool Date::operator!=(const Date & data1)
+bool Date::operator!=(const Date & data1) const
 {
 	if ( day == data1.day && month == data1.month && year == data1.year )
 		return false;
